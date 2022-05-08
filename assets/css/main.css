@@ -233,15 +233,15 @@ input, select, textarea {
 	}
 
 	h3 {
-		font-size: 0.9em;
+		font-size: 1.8em;
 	}
 
 	h4 {
-		font-size: 0.7em;
+		font-size: 1.5em;
 	}
 
 	h5 {
-		font-size: 0.7em;
+		font-size: 1.1em;
 	}
 
 	h6 {
@@ -2668,6 +2668,12 @@ input, select, textarea {
 
 /* Posts */
 
+.container-image {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 ul.posts {
 	list-style: none;
 	padding: 0;
@@ -2876,6 +2882,9 @@ ul.posts {
 	left: -3em;
 	width: calc(100% + (3em * 2));
 }
+	.post h3 {
+		font-size: 1.25em;
+	}
 
 	.post > header {
 		/* display: -moz-flex;
@@ -2914,6 +2923,15 @@ ul.posts {
 				font-weight: 900;
 				font-size: 2em;
 				letter-spacing: 0.02em;
+				padding-bottom: 1em;
+			}
+
+			.post > header .title p {
+				font-size: 0.9em;
+				letter-spacing: 0.02em;
+				/* text-transform: none; */
+				line-height: 1.5em;
+				padding: 0em 5em;
 			}
 
 			.post > header .title > :last-child {

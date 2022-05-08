@@ -7,5 +7,5 @@ $(".resume-hidden-content ul").each(function () {
   
   $(".more").click(function () {
     $(this).prev("ul").find("li").toggleClass("showList");
-    $(this).text(this.innerHTML.includes("more") ? "Read Less" : "Read More");
+    $(this).text(this.innerHTML.includes("more") ? "Read More" : "Read Less");
   });
