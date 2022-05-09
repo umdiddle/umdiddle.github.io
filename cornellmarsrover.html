@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Karaoke Robot Judge - Grace Zhang</title>
+		<title>Cornell Mars Rover - Grace Zhang</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -40,19 +40,112 @@
 							<article class="post">
 								<header>
 									<div class="title">
-										<h2>Cornell Mars Rover</a></h2>
-										<p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p>
+										<h2 style="font-family:'Playfair Display';">Cornell Mars Rover</a></h2>
+										<p>
+											Cornell Mars Rover (CMR) is a project team that designs and builds a <b>semi-autonomous rover</b> to 
+											compete in the annual University Rover Challenge. During my time at CMR, I designed, fabricated, and tested 
+											<b>custom printed circuit boards</b> to interface with the system. Additionally, I also designed 
+											the <b>custom firmware (written in C)</b> that was uploaded onto the <b>PIC32MX530F128H microcontroller.</b>
+											In my senior year, I became the <b>Electrical Subteam Lead</b>, where I learned invaluable leadership skills.
+										</p>
 									</div>
 								</header>
 								<div class="w3-content w3-display-container">
 									<span class="image featured"><img src="images/artemis.jpg" alt="" /></span>
-									<span class="image featured"><img src="images/pic02.jpg" alt="" /></span>
-									<span class="image featured"><img src="images/pic03.jpg" alt="" /></span>
+									<span class="image featured"><img src="images/2020 board .jpg" alt="" /></span>
+									<span class="image featured"><img src="images/20201220 brd bottom.jpg" alt="" /></span>
 									<button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
   									<button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
 								</div>
-								<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-								<p>Nunc quis dui scelerisque, scelerisque urna ut, dapibus orci. Sed vitae condimentum lectus, ut imperdiet quam. Maecenas in justo ut nulla aliquam sodales vel at ligula. Sed blandit diam odio, sed fringilla lectus molestie sit amet. Praesent eu tortor viverra lorem mattis pulvinar feugiat in turpis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce ullamcorper tellus sit amet mattis dignissim. Phasellus ut metus ligula. Curabitur nec leo turpis. Ut gravida purus quis erat pretium, sed pellentesque massa elementum. Fusce vestibulum porta augue, at mattis justo. Integer sed sapien fringilla, dapibus risus id, faucibus ante. Pellentesque mattis nunc sit amet tortor pellentesque, non placerat neque viverra. </p>
+								<h3>2018-2019</h3>
+								<p>
+									During my freshman year, I was in charge of designing the Drill Board, which was used for the Astrotech system to collect 
+									soil and read sensor data about the environment. 
+								</p>
+								<div class="container-image">
+									<figure text-align="center">
+										<img src="images/2018 board layout.jpg" width="50%" height="auto">
+										<figcaption>Drill Board Layout</figcaption>
+									</figure>
+								</div>
+								<h3>2019-2021</h3>
+								<h4>Overview</h4>
+								<p>
+									In my sophomore and junior years, I designed the motor controller board for the brushed DC motors. 
+								</p>
+								<p>
+									The distributed tasks board (DTB) is a combination of a logic board and a power board stacked together, responsible for 
+									controlling motors on the rover. It communicates with the existing Central Communications Board over the CAN bus. Because the 
+									rover started using both brushed and brushless DC motors, the DTB needed to be redesigned to accommodate both. The brushed DC 
+									high power board is responsible for providing power to the DTB logic board and driving brushed DC motors. 
+								</p>
+								<h4>Design Process</h4>
+								<p>
+									The design started with the motor driver. There was already a driver in consideration ⎯ the A4955 ⎯ that was able to run off the battery 
+									voltage and had current sensing integrated on the chip. Using the functional block diagram from the datasheet, all that was left to do 
+									for the H-bridge was choosing the correct values for the FETs, resistors, and capacitors. 
+								</p>
+								<p>
+									The size of the FETs was determined by the amount of current it needed to supply. Additionally, since the A4955 provides gate 
+									drive for an all N-channel external bridge, the FETs had to be N-channel. The chosen FET was N-channel and rated for 60V and 
+									89A. The rest of the components, such as capacitors and resistors, were calculated from the information given on the datasheet 
+									as well as the specifications of the microcontroller on the logic board. 
+								</p>
+								<p>
+									The layout had to be coordinated with the person making the logic board, since the two had to be stackable. The placement 
+									of components on the top and bottom sides also relied on their height; the taller components went on the top layer so that 
+									they would be sandwiched between the boards to reduce the overall DTB size. Since the board dealt with power signals, the 
+									power traces had to be short and thick, with lots of copper pours and vias to dissipate heat reduce electrical noise. 
+								</p>
+								<h4>Final Design</h4>
+								<p>
+									The final design uses the A4955 as a motor driver. This provides gate drive for an external H-bridge made up of the 
+									N-channel FETs PSMN7R0-60YS rated for 60V and 89A. This H-bridge runs off the battery voltage of 20V-40V. Each of the 
+									FETs is controlled by gate driver signals from the A4955. There are large copper pours for the SENSE, OUT1, OUT2, GLA, 
+									GLB, GHA, GHB, VBAT, and GND to reduce noise. Additionally, the pours for OUT1 and OUT2 have arrays of vias to help with 
+									heat dissipation. These are all on the right side of the board, while the thinner signal traces are mostly on the left 
+									side of the board. 
+								</p>
+								<p>
+									There are two Molex microfit connectors for CAN connections. These supply VCAN, GND, CANH, and CANL. While the power 
+									board itself does not use these, these connect to the logic board through the N2526-6002-RB connector. The pin configuration 
+									for this connector mirrors the connections on the logic board. 
+								</p>
+								<p>
+									The power connections come from a powerpole connector. The powerpole connector also outputs OUT1 and OUT2 to the motor. 
+									These control the actual motor. Because of space issues, these slightly hang off the edge of the board. 
+								</p>
+								<div class="container-image">
+									<figure text-align="center">
+										<img src="images/BDC_DTB_schm.png" width="50%" height="auto">
+										<figcaption>Brushed DC Motor Power Board Schematic</figcaption>
+									</figure>
+								</div>
+								<div class="container-image">
+									<figure text-align="center">
+										<img src="images/BDC_DTB_brd.png" width="50%" height="auto">
+										<figcaption>Brushed DC Motor Power Board Top Layout</figcaption>
+									</figure>
+								</div>
+								<div class="container-image">
+									<figure text-align="center">
+										<img src="images/BDC_DTB board bot.png" width="50%" height="auto">
+										<figcaption>Brushed DC Motor Power Board Bottom Layout</figcaption>
+									</figure>
+								</div>
+								<div class="container-image">
+									<figure text-align="center">
+										<img src="images/2020 board .jpg" width="50%" height="auto">
+										<figcaption>Brushed DC Motor Power Board 3D Model</figcaption>
+									</figure>
+								</div>
+								<h3>2021-2022</h3>
+								<p>
+									In my senior year, I became the electrical subteam lead. Throughout the course of the year, I helped redesign the existing 
+									electrical system and oversaw the design and implementation of new systems. This included our custom brushless motor controllers, 
+									our boards for the Astrotech system (peristaltic pumps, CO2 sensors, spectrometry), and a new communication protocol between 
+									the electrical and software systems.
+								</p>
 							</article>
 
 					</div>
